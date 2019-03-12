@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   // URL API
-  apiUrl: 'http://localhost:8000',
+  apiUrl: 'http://localhost:8000/',
+  endpoint: 'api/',
 };
 
 /*
