@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../environments/environment';
-import {Observable} from 'rxjs';
-import {User} from './models/user';
+
+const BASE_URL = 'users/';
 
 @Injectable({
   providedIn: 'root'
