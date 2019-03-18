@@ -22,20 +22,23 @@ security:
         login:
             pattern:  ^/login
             stateless: true
+            provider: app_user_provider
             anonymous: true
             json_login:
                 check_path: /login_check
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
         register:
             pattern:  ^/register
             stateless: true
             anonymous: true
+
         api:
             pattern:  ^/api
             stateless: true
             anonymous: false
-            provider: entity_provider
+            provider: app_user_provider
             guard:
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
