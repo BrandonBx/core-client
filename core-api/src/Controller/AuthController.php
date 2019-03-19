@@ -13,22 +13,22 @@ class AuthController extends AbstractController
 {
     private $userHandler;
 
-    public function __construct(){
-
+    public function __construct(UserHandler $userHandler){
+        $this->userHandler = $userHandler;
     }
-    public function register(Request $request, UserPasswordEncoderInterface $encoder)
+    public function __invoke(User $data, Request $request, UserPasswordEncoderInterface $encoder): User
     {
         $em = $this->getDoctrine()->getManager();
 
-        $username = $request->request->get('_username');
-        $password = $request->request->get('_password');
+        $username = $request->request->get('username');
+        $password = $request->request->get('password');
 
         $user = new User();
         $user->setUsername($username);
         $user->setPassword($encoder->encodePassword($user, $password));
         $em->persist($user);
         $em->flush();
-        return new Response(sprintf('User %s successfully created', $user->getUsername()));
+        return $user;
     }
 
     public function api()

@@ -8,7 +8,13 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
  * @ORM\Entity
- * @ApiResource
+ * @ApiResource(itemsOperations={
+ *          "post",
+ *          "post_authentication"={
+ *          "path"="/login",
+ *          "controller"=AuthController::class
+ *       }
+ *     })
  */
 class User implements UserInterface
 {

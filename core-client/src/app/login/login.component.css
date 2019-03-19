@@ -7,8 +7,12 @@ mat-card {
   width: 300px;
 }
 
+.mat-card-content{
+  margin-bottom: -16px;
+}
+
 #Connecting{
-  margin: 8px;
+  margin: 16px;
 }
 
 mat-card-title {
