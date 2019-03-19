@@ -10,3 +10,7 @@ mat-card {
 #Connecting{
   margin: 8px;
 }
+
+mat-card-title {
+  margin-bottom: 16px;
+}
