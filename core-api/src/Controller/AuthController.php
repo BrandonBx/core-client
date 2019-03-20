@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,7 +17,7 @@ class AuthController extends AbstractController
     public function __construct(){
         $this->userService;
     }
-    public function register(Request $request, UserPasswordEncoderInterface $encoder): User
+    public function register(Request $request, UserPasswordEncoderInterface $encoder)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -24,14 +25,16 @@ class AuthController extends AbstractController
         $password = $request->request->get('password');
         $email = $request->request->get('email');
 
-
         $user = new User();
         $user->setUsername($username);
         $user->setPassword($encoder->encodePassword($user, $password));
         $user->setEmail($email);
         $em->persist($user);
         $em->flush();
-        return $user;
+
+
+
+        return new Response('Created');
     }
 
     public function api()
