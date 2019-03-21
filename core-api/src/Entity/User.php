@@ -10,14 +10,14 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity
  * @ApiResource(attributes={
- *      "normalization_context"={"groups"={"read"}},
- *      "denormalization_context"={"groups"={"write"}}
+ *     "normalization_context"={"groups"={"read"}},
+ *     "denormalization_context"={"groups"={"write"}}
  * })
  */
 class User implements UserInterface
 {
     /**
-     * @Groups("Read, write")
+     * @Groups({"read"})
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -25,33 +25,33 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @Groups("Read, write")
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
 
     /**
-     * @Groups("Read, write")
+     * @Groups({"read", "write"})
      * @ORM\Column(type="json")
      */
     private $roles = [];
 
     /**
-     * @Groups("write")
+     * @Groups({"write"})
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
     private $password;
 
     /**
-     * @Groups("write")
+     * @Groups({"write"})
      * @var boolean | null
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $isActive;
 
     /**
-     * @Groups("Read, write")
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=50)
      */
     private $username;
