@@ -38,9 +38,13 @@ class AuthController extends AbstractController
         return new Response('Created');
     }
 
-    public function api()
+    public function getCurrUser()
     {
         $user = $this->getUser();
-        return new Response($user);
+
+        $data = $this->get('serializer')->serialize($user, 'json');
+        $response = new Response($data);
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 }
