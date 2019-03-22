@@ -8,14 +8,17 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AuthController extends AbstractController
 {
     private $userService;
 
-    public function __construct(){
+    private $tokenStorage;
+    public function __construct(TokenStorageInterface $tokenStorage){
         $this->userService;
+        $this->tokenStorage = $tokenStorage;
     }
     public function register(Request $request, UserPasswordEncoderInterface $encoder)
     {
@@ -32,13 +35,12 @@ class AuthController extends AbstractController
         $em->persist($user);
         $em->flush();
 
-
-
         return new Response('Created');
     }
 
     public function api()
     {
-        return new Response(sprintf('Logged in as %s', $this->getUser()->getUsername()));
+        $user = $this->getUser();
+        return new Response($user);
     }
 }
