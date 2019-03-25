@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
 import {User} from '../models/user';
+import {tokenNotExpired} from 'angular2-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,15 @@ import {User} from '../models/user';
 export class AuthService {
 
   constructor(private http: HttpClient) {}
+
+  public getToken(): string {
+    return localStorage.getItem('token');
+  }
+
+  public isAuthenticated(): boolean {
+    const token = this.getToken();
+    return tokenNotExpired(null, token);
+  }
 
   login(username: string, password: string): Observable<string>{
     const httpOptions = {
