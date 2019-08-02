@@ -2,6 +2,10 @@
   "name": "core-client",
   "version": "0.0.0",
   "scripts": {
+    "android": "tns run android --bundle",
+    "ios": "tns run ios --bundle",
+    "mobile": "tns run --bundle",
+    "preview": "tns preview --bundle",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -11,6 +15,10 @@
   },
   "private": true,
   "dependencies": {
+    "nativescript-angular": "~7.2.0",
+    "nativescript-theme-core": "~1.0.4",
+    "reflect-metadata": "~0.1.12",
+    "tns-core-modules": "~5.2.0",
     "@angular/animations": "^8.2.0",
     "@angular/cdk": "^8.1.2",
     "@angular/common": "^8.2.0",
@@ -23,6 +31,7 @@
     "@angular/platform-browser": "^8.2.0",
     "@angular/platform-browser-dynamic": "^8.2.0",
     "@angular/router": "^8.2.0",
+    "@nativescript/schematics": "^0.6.0",
     "angular2-jwt": "^0.2.3",
     "core-js": "^3.1.4",
     "rxjs": "~6.5.2",
@@ -31,6 +40,8 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
+    "nativescript-dev-webpack": "^0.20.0",
+    "@nativescript/schematics": "~0.4.0",
     "@angular-devkit/build-angular": "~0.802.0",
     "@angular/cli": "^8.2.0",
     "@angular/compiler-cli": "^8.2.0",
@@ -50,5 +61,8 @@
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
     "typescript": "~3.5.3"
+  },
+  "nativescript": {
+    "id": "org.nativescript.ngsample"
   }
 }
