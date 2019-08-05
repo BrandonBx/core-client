@@ -25,6 +25,7 @@ import { LoginComponent } from './login/login.component';
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
+test
 /*
 Pass your application module to the bootstrapModule function located in main.ts to start your app
 */
